@@ -4,26 +4,85 @@
 <head>
   <title>Title</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
   <link rel="stylesheet" href="css/uikit.min.css" />
   <script src="js/uikit.min.js"></script>
   <script src="js/uikit-icons.min.js"></script>
+  <script src="js/tailwind.js"></script>
 </head>
 
 <body>
 
-  <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center uk-margin-large-top" uk-grid>
-    <div>
-      <div class="uk-background-muted uk-padding">Item</div>
+  <div class="h-screen bg-black">
+
+    <nav class="w-full h-14 z-10 bg-stone-800 sticky top-0">
+
+
+
+    </nav>
+
+
+    <div class="w-full h-[calc(100vh-3.5rem)] overflow-y-auto grid 
+                gap-2 grid-cols-1 p-2 
+                sm:gap-3 sm:grid-cols-2 sm:p-3
+                md:gap-4 md:grid-cols-3 md:p-4
+                lg:gap-5 lg:grid-cols-4 lg:p-5
+                xl:gap-6 xl:grid-cols-5 xl:p-6
+                2xl:gap-7 2xl:grid-cols-6 2xl:p-7
+                ">
+
+
+      <div class="w-full h-fit grid grid-cols-8 grid-rows-3 gap-1 sm:grid-cols-5 sm:grid-rows-8 rounded-lg overflow-hidden">
+
+        <div class="order-2 col-span-3 row-span-3 bg-stone-800 sm:order-1 sm:col-span-5 sm:row-span-5">
+          <img class="w-full" src="assets/Character_Aether_Thumb.webp" alt="">
+        </div>
+
+        <div class="order-1 col-span-1 row-span-3 grid place-content-around p-1 bg-stone-800 sm:order-2">
+          <img class="bg-center bg-contain w-full " src="assets/anemo%20-%20Copy.png" alt="">
+          <img class="bg-center bg-contain w-full " src="assets/sword.png" alt="">
+          
+        </div>
+
+        <div class="order-3 col-span-4 row-span-1 bg-stone-800 grid place-content-around p-1">
+          <h1 class="font-mono font-black text-xl text-stone-50">Ningguang</h1>
+        </div>
+
+        <div class="order-4 col-span-4 row-span-2 bg-stone-800 grid grid-cols-2 text-center place-content-around p-1">
+          <div>
+            <p class="text-xs font-mono font-medium font-semibold text-stone-400">HP</p>
+            <p class="font-mono font-bold text-stone-50">13,226</p>
+          </div>
+          <div>
+            <p class="text-xs font-mono font-medium font-semibold text-stone-400">ATK</p>
+            <p class="font-mono font-bold text-stone-50">251</p>
+          </div>
+          <div>
+            <p class="text-xs font-mono font-medium font-semibold text-stone-400">DEF</p>
+            <p class="font-mono font-bold text-stone-50">876</p>
+          </div>
+          <div>
+            <p class="text-xs font-mono font-medium font-semibold text-stone-400">Geo DMG</p>
+            <p class="font-mono font-bold text-stone-50">28.8%</p>
+          </div>
+        </div>
+
+      </div>
+
+
+     
+
+
+
+
+
+
+
+
     </div>
-    <div>
-      <div class="uk-background-primary uk-padding uk-light">Item</div>
-    </div>
-    <div>
-      <div class="uk-background-secondary uk-padding uk-light">Item</div>
-    </div>
+
   </div>
 
-</body>
 
-</html>
+
+</body></html>
