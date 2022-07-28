@@ -1,87 +1,339 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-  <title>Title</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-  <link rel="stylesheet" href="css/uikit.min.css" />
-  <script src="js/uikit.min.js"></script>
-  <script src="js/uikit-icons.min.js"></script>
-  <script src="js/tailwind.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="/js/tailwind.js"></script>
+  <script src="/js/apex_charts.js"></script>
+
+  <script src="/js/alpine_collapse.js" defer></script>
+  <script src="/js/alpine_focus.js" defer></script>
+  <script src="/js/alpine_intersect.js" defer></script>
+  <script src="/js/alpine_mask.js" defer></script>
+  <script src="/js/alpine_morph.js" defer></script>
+  <script src="/js/alpine_persist.js" defer></script>
+
+  <script src="/js/_common.js" defer></script>
+  <script src="/data/data_char_wish_list.js" defer></script>
+  <script src="/data/data_wp_wish_list.js" defer></script>
+
+  <script src="/js/alpine.js" defer></script>
+
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
 </head>
 
-<body>
-
-  <div class="h-screen bg-black">
-
-    <nav class="w-full h-14 z-10 bg-stone-800 sticky top-0">
 
 
+<body x-data x-cloak>
+
+
+  <main class="w-full h-screen bg-black overflow-auto relative font-mono">
+
+
+
+
+
+
+    <!-- NAV BAR -->
+    <nav class="px-5 py-3 w-full bg-stone-800/80 grid grid-cols-3 content-center sticky top-0 z-20">
+
+      <div class="flex flex-row gap-2 justify-self-start">
+        <button class="group h-full flex flex-row bg-stone-300 hover:bg-blue-600 rounded-lg px-2 py-1 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-stone-900 group-hover:fill-stone-100 sm:mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
+          </svg>
+          <p class="font-black text-stone-900 group-hover:text-stone-100 hidden sm:inline">ALL</p>
+        </button>
+        <button class="group h-full flex flex-row bg-stone-300 hover:bg-blue-600 rounded-lg px-2 py-1 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-stone-900 group-hover:fill-stone-100 sm:mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+          </svg>
+          <p class="font-black text-stone-900 group-hover:text-stone-100 hidden sm:inline">STATS</p>
+        </button>
+      </div>
+
+      <div class="justify-self-center">
+        <h1 class="font-black text-base text-center select-none sm:text-2xl text-stone-200">WISH TRACKER</h1>
+      </div>
+
+      <div class="justify-self-end">
+        <button class="group h-full flex flex-row bg-stone-300 hover:bg-blue-600 rounded-lg px-2 py-1 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-stone-900 group-hover:fill-stone-100 sm:mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+          </svg>
+          <p class="font-black text-stone-900 group-hover:text-stone-100 hidden sm:inline">SETINGS</p>
+        </button>
+      </div>
 
     </nav>
 
 
-    <div class="w-full h-[calc(100vh-3.5rem)] overflow-y-auto grid 
-                gap-2 grid-cols-1 p-2 
-                sm:gap-3 sm:grid-cols-2 sm:p-3
-                md:gap-4 md:grid-cols-3 md:p-4
-                lg:gap-5 lg:grid-cols-4 lg:p-5
-                xl:gap-6 xl:grid-cols-5 xl:p-6
-                2xl:gap-7 2xl:grid-cols-6 2xl:p-7
-                ">
 
 
-      <div class="w-full h-fit grid grid-cols-8 grid-rows-3 gap-1 sm:grid-cols-5 sm:grid-rows-8 rounded-lg overflow-hidden">
 
-        <div class="order-2 col-span-3 row-span-3 bg-stone-800 sm:order-1 sm:col-span-5 sm:row-span-5">
-          <img class="w-full" src="assets/Character_Aether_Thumb.webp" alt="">
-        </div>
 
-        <div class="order-1 col-span-1 row-span-3 grid place-content-around p-1 bg-stone-800 sm:order-2">
-          <img class="bg-center bg-contain w-full " src="assets/anemo%20-%20Copy.png" alt="">
-          <img class="bg-center bg-contain w-full " src="assets/sword.png" alt="">
-          
-        </div>
 
-        <div class="order-3 col-span-4 row-span-1 bg-stone-800 grid place-content-around p-1">
-          <h1 class="font-mono font-black text-xl text-stone-50">Ningguang</h1>
-        </div>
 
-        <div class="order-4 col-span-4 row-span-2 bg-stone-800 grid grid-cols-2 text-center place-content-around p-1">
-          <div>
-            <p class="text-xs font-mono font-medium font-semibold text-stone-400">HP</p>
-            <p class="font-mono font-bold text-stone-50">13,226</p>
+    <!-- BANNER DETAILS -->
+    <section class="p-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 text-stone-100 font-black">
+
+      <div class="bg-stone-800 rounded-xl flex flex-col gap-3 p-3">
+        <h1 class="font-black text-stone-100 text-3xl">Character Banner</h1>
+        <div class="text-center flex flex-row justify-between">
+          <div class="text-stone-100">
+            <p class="text-lg font-bold">TOTAL</p>
+            <span class="text-base font-bold">123</span>
           </div>
-          <div>
-            <p class="text-xs font-mono font-medium font-semibold text-stone-400">ATK</p>
-            <p class="font-mono font-bold text-stone-50">251</p>
+          <div class="text-amber-500">
+            <p class="text-lg font-bold">5★ PITY</p>
+            <span class="text-base font-bold">34/90</span>
           </div>
-          <div>
-            <p class="text-xs font-mono font-medium font-semibold text-stone-400">DEF</p>
-            <p class="font-mono font-bold text-stone-50">876</p>
-          </div>
-          <div>
-            <p class="text-xs font-mono font-medium font-semibold text-stone-400">Geo DMG</p>
-            <p class="font-mono font-bold text-stone-50">28.8%</p>
+          <div class="text-violet-500">
+            <p class="text-lg font-bold">4★ PITY</p>
+            <span class="text-base font-bold">5/10</span>
           </div>
         </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-xl flex flex-col gap-3 p-3">
+        <h1 class="font-black text-stone-100 text-3xl">Weapon Banner</h1>
+        <div class="text-center flex flex-row justify-between">
+          <div class="text-stone-100">
+            <p class="text-lg font-bold">TOTAL</p>
+            <span class="text-base font-bold">123</span>
+          </div>
+          <div class="text-amber-500">
+            <p class="text-lg font-bold">5★ PITY</p>
+            <span class="text-base font-bold">34/90</span>
+          </div>
+          <div class="text-violet-500">
+            <p class="text-lg font-bold">4★ PITY</p>
+            <span class="text-base font-bold">5/10</span>
+          </div>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-xl flex flex-col gap-3 p-3">
+        <h1 class="font-black text-stone-100 text-3xl">Standard Banner</h1>
+        <div class="text-center flex flex-row justify-between">
+          <div class="text-stone-100">
+            <p class="text-lg font-bold">TOTAL</p>
+            <span class="text-base font-bold">123</span>
+          </div>
+          <div class="text-amber-500">
+            <p class="text-lg font-bold">5★ PITY</p>
+            <span class="text-base font-bold">34/90</span>
+          </div>
+          <div class="text-violet-500">
+            <p class="text-lg font-bold">4★ PITY</p>
+            <span class="text-base font-bold">5/10</span>
+          </div>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-xl flex flex-col gap-3 p-3">
+        <h1 class="font-black text-stone-100 text-3xl">Novice Banner</h1>
+        <div class="text-center flex flex-row justify-between">
+          <div class="text-stone-100">
+            <p class="text-lg font-bold">TOTAL</p>
+            <span class="text-base font-bold">123</span>
+          </div>
+          <div class="text-amber-500">
+            <p class="text-lg font-bold">5★ PITY</p>
+            <span class="text-base font-bold">34/90</span>
+          </div>
+          <div class="text-violet-500">
+            <p class="text-lg font-bold">4★ PITY</p>
+            <span class="text-base font-bold">5/10</span>
+          </div>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+        <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
+          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+          <p class="text-xl">Sangonomiya Kokomi</p>
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+    <!-- PULL HISTORY -->
+    <section class="p-5 text-stone-100 font-black">
+
+      <div class="bg-stone-800 rounded-xl p-3">
+        <h3 class="text-3xl text-center">Wish History</h3>
+        <div class="h-96"></div>
+
+
 
       </div>
 
-
-     
-
+    </section>
 
 
 
 
 
+    <!-- LAST PULLS DETAILS -->
+    <section class="p-5 grid grid-cols-1 xl:grid-cols-2 gap-5 text-stone-100 font-black">
+
+      <div class="bg-stone-800 rounded-xl flex flex-col gap-3 p-3">
+        <h1 class="text-3xl text-amber-500 text-center">Recent 5★ List</h1>
+        <div class="flex flex-col gap-2">
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-xl flex flex-col gap-3 p-3">
+        <h1 class="text-3xl text-violet-500 text-center">Recent 4★ List</h1>
+        <div class="flex flex-col gap-2">
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
+            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
+            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <div class="flex grow justify-end">
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
 
 
-    </div>
 
-  </div>
+
+
+
+    <!-- ADD NEW BUTTON -->
+    <button class="group fixed bottom-5 right-5 z-20 bg-stone-300 hover:bg-blue-600 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-stone-900 group-hover:fill-stone-100" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
+    </button>
+
+
+
+
+  </main>
+
+
+
+
 
 
 
