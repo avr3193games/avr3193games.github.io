@@ -3,199 +3,199 @@
      list: [{
        name: 'Albedo',
        rarity: 5,
-       id: 'albedo'
+       id: '/assets/characters/albedo.png'
         }, {
        name: 'Amber',
        rarity: 4,
-       id: 'amber'
+       id: '/assets/characters/amber.png'
         }, {
        name: 'Arataki Itto',
        rarity: 5,
-       id: 'arataki_itto'
+       id: '/assets/characters/arataki_itto.png'
         }, {
        name: 'Barbara',
        rarity: 4,
-       id: 'barbara'
+       id: '/assets/characters/barbara.png'
         }, {
        name: 'Beidou',
        rarity: 4,
-       id: 'beidou'
+       id: '/assets/characters/beidou.png'
         }, {
        name: '	Bennett',
        rarity: 4,
-       id: 'bennett'
+       id: '/assets/characters/bennett.png'
         }, {
        name: 'Chongyun',
        rarity: 4,
-       id: 'chongyun'
+       id: '/assets/characters/chongyun.png'
         }, {
        name: 'Diluc',
        rarity: 5,
-       id: 'diluc'
+       id: '/assets/characters/diluc.png'
         }, {
        name: 'Diona',
        rarity: 4,
-       id: 'diona'
+       id: '/assets/characters/diona.png'
         }, {
        name: 'Eula',
        rarity: 5,
-       id: 'eula'
+       id: '/assets/characters/eula.png'
         }, {
        name: 'Fischl',
        rarity: 4,
-       id: 'fischl'
+       id: '/assets/characters/fischl.png'
         }, {
        name: 'Ganyu',
        rarity: 5,
-       id: 'ganyu'
+       id: '/assets/characters/ganyu.png'
         }, {
        name: 'Gorou',
        rarity: 4,
-       id: 'gorou'
+       id: '/assets/characters/gorou.png'
         }, {
        name: 'Hu Tao',
        rarity: 5,
-       id: 'hu_tao'
+       id: '/assets/characters/hu_tao.png'
         }, {
        name: 'Jean',
        rarity: 5,
-       id: 'jean'
+       id: '/assets/characters/jean.png'
         }, {
        name: 'Kaedehara Kazuha',
        rarity: 5,
-       id: 'kaedehara_kazuha'
+       id: '/assets/characters/kaedehara_kazuha.png'
         }, {
        name: 'Kaeya',
        rarity: 4,
-       id: 'kaeya'
+       id: '/assets/characters/kaeya.png'
         }, {
        name: 'Kamisato Ayaka',
        rarity: 5,
-       id: 'kamisato_ayaka'
+       id: '/assets/characters/kamisato_ayaka.png'
         }, {
        name: 'Kamisato Ayato',
        rarity: 5,
-       id: 'kamisato_ayato'
+       id: '/assets/characters/kamisato_ayato.png'
         }, {
        name: 'Keqing',
        rarity: 5,
-       id: 'keqing'
+       id: '/assets/characters/keqing.png'
         }, {
        name: 'Klee',
        rarity: 5,
-       id: 'klee'
+       id: '/assets/characters/klee.png'
         }, {
        name: 'Kujou Sara',
        rarity: 4,
-       id: 'kujou_sara'
+       id: '/assets/characters/kujou_sara.png'
         }, {
        name: 'Kuki Shinobu',
        rarity: 4,
-       id: 'kuki_shinobu'
+       id: '/assets/characters/kuki_shinobu.png'
         }, {
        name: 'Lisa',
        rarity: 4,
-       id: 'lisa'
+       id: '/assets/characters/lisa.png'
         }, {
        name: 'Mona',
        rarity: 5,
-       id: 'mona'
+       id: '/assets/characters/mona.png'
         }, {
        name: 'Ningguang',
        rarity: 4,
-       id: 'ningguang'
+       id: '/assets/characters/ningguang.png'
         }, {
        name: 'Noelle',
        rarity: 4,
-       id: 'noelle'
+       id: '/assets/characters/noelle.png'
         }, {
        name: 'Qiqi',
        rarity: 5,
-       id: 'qiqi'
+       id: '/assets/characters/qiqi.png'
         }, {
        name: 'Raiden Shogun',
        rarity: 5,
-       id: 'raiden_shogun'
+       id: '/assets/characters/raiden_shogun.png'
         }, {
        name: 'Razor',
        rarity: 4,
-       id: 'razor'
+       id: '/assets/characters/razor.png'
         }, {
        name: 'Rosaria',
        rarity: 4,
-       id: 'rosaria'
+       id: '/assets/characters/rosaria.png'
         }, {
        name: 'Sangonomiya Kokomi',
        rarity: 5,
-       id: 'sangonomiya_kokomi'
+       id: '/assets/characters/sangonomiya_kokomi.png'
         }, {
        name: 'Sayu',
        rarity: 4,
-       id: 'sayu'
+       id: '/assets/characters/sayu.png'
         }, {
        name: 'Shenhe',
        rarity: 5,
-       id: 'shenhe'
+       id: '/assets/characters/shenhe.png'
         }, {
        name: 'Shikanoin Heizou',
        rarity: 4,
-       id: 'shikanoin_heizou'
+       id: '/assets/characters/shikanoin_heizou.png'
         }, {
        name: 'Sucrose',
        rarity: 4,
-       id: 'sucrose'
+       id: '/assets/characters/sucrose.png'
         }, {
        name: 'Tartaglia',
        rarity: 5,
-       id: 'tartaglia'
+       id: '/assets/characters/tartaglia.png'
         }, {
        name: 'Thoma',
        rarity: 4,
-       id: 'thoma'
+       id: '/assets/characters/thoma.png'
         }, {
        name: 'Venti',
        rarity: 5,
-       id: 'venti'
+       id: '/assets/characters/venti.png'
         }, {
        name: 'Xiangling',
        rarity: 4,
-       id: 'xiangling'
+       id: '/assets/characters/xiangling.png'
         }, {
        name: 'Xiao',
        rarity: 5,
-       id: 'xiao'
+       id: '/assets/characters/xiao.png'
         }, {
        name: 'Xingqiu',
        rarity: 4,
-       id: 'xingqiu'
+       id: '/assets/characters/xingqiu.png'
         }, {
        name: 'Xinyan',
        rarity: 4,
-       id: 'xinyan'
+       id: '/assets/characters/xinyan.png'
         }, {
        name: 'Yae Miko',
        rarity: 5,
-       id: 'yae_miko'
+       id: '/assets/characters/yae_miko.png'
         }, {
        name: 'Yanfei',
        rarity: 4,
-       id: 'yanfei'
+       id: '/assets/characters/yanfei.png'
         }, {
        name: 'Yelan',
        rarity: 5,
-       id: 'yelan'
+       id: '/assets/characters/yelan.png'
         }, {
        name: 'Yoimiya',
        rarity: 5,
-       id: 'yoimiya'
+       id: '/assets/characters/yoimiya.png'
         }, {
        name: 'Yun Jin',
        rarity: 4,
-       id: 'yun_jin'
+       id: '/assets/characters/yun_jin.png'
         }, {
        name: 'Zhongli',
        rarity: 5,
-       id: 'zhongli'
+       id: '/assets/characters/zhongli.png'
         }]
    })
  })

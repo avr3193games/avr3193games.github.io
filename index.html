@@ -8,16 +8,12 @@
   <script src="/js/tailwind.js"></script>
   <script src="/js/apex_charts.js"></script>
 
-  <script src="/js/alpine_collapse.js" defer></script>
-  <script src="/js/alpine_focus.js" defer></script>
-  <script src="/js/alpine_intersect.js" defer></script>
   <script src="/js/alpine_mask.js" defer></script>
-  <script src="/js/alpine_morph.js" defer></script>
   <script src="/js/alpine_persist.js" defer></script>
 
-  <script src="/js/_common.js" defer></script>
   <script src="/data/data_char_wish_list.js" defer></script>
   <script src="/data/data_wp_wish_list.js" defer></script>
+
 
   <script src="/js/alpine.js" defer></script>
 
@@ -35,10 +31,10 @@
 
 
 
-<body x-data x-cloak>
+<body x-data="add_new" x-cloak>
 
 
-  <main class="w-full h-screen bg-black overflow-auto relative font-mono">
+  <main class="w-full h-screen bg-black overflow-auto relative select-none font-mono" x-init="populate()">
 
 
 
@@ -46,35 +42,26 @@
 
 
     <!-- NAV BAR -->
-    <nav class="px-5 py-3 w-full bg-stone-800/80 grid grid-cols-3 content-center sticky top-0 z-20">
+    <nav class="px-5 py-3 w-full bg-stone-800/80 grid grid-cols-3 content-center sticky top-0 z-10">
 
-      <div class="flex flex-row gap-2 justify-self-start">
-        <button class="group h-full flex flex-row bg-stone-300 hover:bg-blue-600 rounded-lg px-2 py-1 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-stone-900 group-hover:fill-stone-100 sm:mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
-          </svg>
-          <p class="font-black text-stone-900 group-hover:text-stone-100 hidden sm:inline">ALL</p>
-        </button>
-        <button class="group h-full flex flex-row bg-stone-300 hover:bg-blue-600 rounded-lg px-2 py-1 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-stone-900 group-hover:fill-stone-100 sm:mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-          </svg>
-          <p class="font-black text-stone-900 group-hover:text-stone-100 hidden sm:inline">STATS</p>
-        </button>
+      <div class="justify-self-start">
+        <button class="py-1 px-3 bg-stone-300 rounded-lg text-sm sm:text-base font-black hidden">ALL WISHES</button>
       </div>
 
       <div class="justify-self-center">
-        <h1 class="font-black text-base text-center select-none sm:text-2xl text-stone-200">WISH TRACKER</h1>
+        <h1 class="font-black text-base text-center text-xl sm:text-2xl text-stone-200">WISH TRACKER</h1>
       </div>
 
       <div class="justify-self-end">
-        <button class="group h-full flex flex-row bg-stone-300 hover:bg-blue-600 rounded-lg px-2 py-1 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-stone-900 group-hover:fill-stone-100 sm:mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-          </svg>
-          <p class="font-black text-stone-900 group-hover:text-stone-100 hidden sm:inline">SETINGS</p>
-        </button>
+        <div class="relative" x-data="{open:false, toggle(){this.open = !this.open}}">
+          <button class="py-1 px-3 bg-stone-300 rounded-lg text-sm sm:text-base font-black" aria-expanded="true" aria-controls="update_btn" @click="toggle">UPDATE</button>
+          <div class="w-40 mt-2 p-5 rounded-xl bg-stone-300 absolute right-0 text-center text-stone-100 z-30 flex flex-col gap-5" id="update_btn" x-show="open" @click.outside="open=false" x-transition.origin.top>
+            <button class="py-1 px-3 bg-blue-600 rounded-lg text-base font-black" @click="backup_data()">BACKUP</button>
+            <button class="py-1 px-3 bg-blue-600 rounded-lg text-base font-black" @click="$refs.upload_file.click()">RESTORE</button>
+            <input class="hidden" type="file" accept=".avr" x-ref="upload_file" @change="restore_data()">
+          </div>
+        </div>
+
       </div>
 
     </nav>
@@ -94,24 +81,24 @@
         <div class="text-center flex flex-row justify-between">
           <div class="text-stone-100">
             <p class="text-lg font-bold">TOTAL</p>
-            <span class="text-base font-bold">123</span>
+            <span class="text-base font-bold" x-text="char_ban.total"></span>
           </div>
           <div class="text-amber-500">
             <p class="text-lg font-bold">5★ PITY</p>
-            <span class="text-base font-bold">34/90</span>
+            <span class="text-base font-bold" x-text="char_ban.pity_5 + '/90'"></span>
           </div>
           <div class="text-violet-500">
             <p class="text-lg font-bold">4★ PITY</p>
-            <span class="text-base font-bold">5/10</span>
+            <span class="text-base font-bold" x-text="char_ban.pity_4 + '/10'"></span>
           </div>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="char_ban.item_5_id">
+          <p class="text-xl" x-text="char_ban.item_5_name"></p>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="char_ban.item_4_id">
+          <p class="text-xl" x-text="char_ban.item_4_name"></p>
         </div>
       </div>
 
@@ -120,24 +107,24 @@
         <div class="text-center flex flex-row justify-between">
           <div class="text-stone-100">
             <p class="text-lg font-bold">TOTAL</p>
-            <span class="text-base font-bold">123</span>
+            <span class="text-base font-bold" x-text="wp_ban.total"></span>
           </div>
           <div class="text-amber-500">
             <p class="text-lg font-bold">5★ PITY</p>
-            <span class="text-base font-bold">34/90</span>
+            <span class="text-base font-bold" x-text="wp_ban.pity_5 + '/80'"></span>
           </div>
           <div class="text-violet-500">
             <p class="text-lg font-bold">4★ PITY</p>
-            <span class="text-base font-bold">5/10</span>
+            <span class="text-base font-bold" x-text="wp_ban.pity_4 + '/10'"></span>
           </div>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="wp_ban.item_5_id">
+          <p class="text-xl" x-text="wp_ban.item_5_name"></p>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="wp_ban.item_4_id">
+          <p class="text-xl" x-text="wp_ban.item_4_name"></p>
         </div>
       </div>
 
@@ -146,24 +133,24 @@
         <div class="text-center flex flex-row justify-between">
           <div class="text-stone-100">
             <p class="text-lg font-bold">TOTAL</p>
-            <span class="text-base font-bold">123</span>
+            <span class="text-base font-bold" x-text="perma_ban.total"></span>
           </div>
           <div class="text-amber-500">
             <p class="text-lg font-bold">5★ PITY</p>
-            <span class="text-base font-bold">34/90</span>
+            <span class="text-base font-bold" x-text="perma_ban.pity_5 + '/90'"></span>
           </div>
           <div class="text-violet-500">
             <p class="text-lg font-bold">4★ PITY</p>
-            <span class="text-base font-bold">5/10</span>
+            <span class="text-base font-bold" x-text="perma_ban.pity_4 + '/10'"></span>
           </div>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="perma_ban.item_5_id">
+          <p class="text-xl" x-text="perma_ban.item_5_name"></p>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="perma_ban.item_4_id">
+          <p class="text-xl" x-text="perma_ban.item_4_name"></p>
         </div>
       </div>
 
@@ -172,24 +159,24 @@
         <div class="text-center flex flex-row justify-between">
           <div class="text-stone-100">
             <p class="text-lg font-bold">TOTAL</p>
-            <span class="text-base font-bold">123</span>
+            <span class="text-base font-bold" x-text="nov_ban.total"></span>
           </div>
           <div class="text-amber-500">
             <p class="text-lg font-bold">5★ PITY</p>
-            <span class="text-base font-bold">34/90</span>
+            <span class="text-base font-bold" x-text="nov_ban.pity_5 + '/90'"></span>
           </div>
           <div class="text-violet-500">
             <p class="text-lg font-bold">4★ PITY</p>
-            <span class="text-base font-bold">5/10</span>
+            <span class="text-base font-bold" x-text="nov_ban.pity_4 + '/10'"></span>
           </div>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-amber-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="nov_ban.item_5_id">
+          <p class="text-xl" x-text="nov_ban.item_5_name"></p>
         </div>
         <div class="w-full rounded-xl flex flex-row items-center p-1 bg-gradient-to-r from-violet-500">
-          <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-          <p class="text-xl">Sangonomiya Kokomi</p>
+          <img class="h-14 w-14 mr-2 object-contain" :src="nov_ban.item_4_id">
+          <p class="text-xl" x-text="nov_ban.item_4_name"></p>
         </div>
       </div>
 
@@ -201,9 +188,9 @@
     <!-- PULL HISTORY -->
     <section class="p-5 text-stone-100 font-black">
 
-      <div class="bg-stone-800 rounded-xl p-3">
+      <div class="bg-stone-800 rounded-xl ">
         <h3 class="text-3xl text-center">Wish History</h3>
-        <div class="h-96"></div>
+        <div class="h-fit" x-ref="test" x-init="test_chart()"></div>
 
 
 
@@ -223,42 +210,42 @@
         <div class="flex flex-col gap-2">
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[0].id">
+            <p class="sm:text-xl" x-text="list_5[0].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[0].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[1].id">
+            <p class="sm:text-xl" x-text="list_5[1].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[1].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[2].id">
+            <p class="sm:text-xl" x-text="list_5[2].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[2].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[3].id">
+            <p class="sm:text-xl" x-text="list_5[3].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[3].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[4].id">
+            <p class="sm:text-xl" x-text="list_5[4].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[4].pity + ' Wishes'"></div>
             </div>
           </div>
 
@@ -270,42 +257,42 @@
         <div class="flex flex-col gap-2">
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[0].id">
+            <p class="sm:text-xl" x-text="list_4[0].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[0].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[1].id">
+            <p class="sm:text-xl" x-text="list_4[1].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[1].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[2].id">
+            <p class="sm:text-xl" x-text="list_4[2].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[2].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[3].id">
+            <p class="sm:text-xl" x-text="list_4[3].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[3].pity + ' Wishes'"></div>
             </div>
           </div>
 
           <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" src="assets/characters/albedo.png">
-            <p class="sm:text-xl">Sangonomiya Kokomi</p>
+            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[4].id">
+            <p class="sm:text-xl" x-text="list_4[4].name"></p>
             <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base">3 Wishes</div>
+              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[4].pity + ' Wishes'"></div>
             </div>
           </div>
 
@@ -320,20 +307,369 @@
 
 
     <!-- ADD NEW BUTTON -->
-    <button class="group fixed bottom-5 right-5 z-20 bg-stone-300 hover:bg-blue-600 rounded-full">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-stone-900 group-hover:fill-stone-100" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-      </svg>
-    </button>
+    <div @keydown.escape="open_add_new = false; location.reload()" class="">
+      <button class="group fixed bottom-5 right-5 z-10 bg-stone-300 hover:bg-blue-600 rounded-full" @click="toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-stone-900 group-hover:fill-stone-100" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+      </button>
+
+      <div class="flex justify-center items-start overflow-auto w-screen h-screen bg-stone-900/75 z-20 fixed inset-0" x-show="open_add_new">
+        <div class="p-5 w-96 mt-20 max-w-full bg-stone-800 rounded-xl flex flex-col gap-5 text-stone-100" @click.away="toggle; location.reload()">
+
+          <div class="relative" x-data="{open:false, toggle(){this.open = !this.open}}">
+            <input type="text" class="bg-stone-900 border-2 border-stone-600 rounded-lg p-2 w-full text-center" aria-expanded="true" aria-controls="banner_in" placeholder="Select Banner" readonly :value="banner_type" @click="toggle" @click.outside="open=false">
+            <div class="w-full mt-2 p-2 rounded-xl bg-stone-700 absolute text-center z-30" id="banner_in" x-show="open" x-transition.origin.top>
+              <div class="text-lg p-1 font-bold rounded-xl hover:bg-blue-600" @click="banner_type = 'Character Banner'">Character Banner</div>
+              <div class="text-lg p-1 font-bold rounded-xl hover:bg-blue-600" @click="banner_type = 'Weapon Banner'">Weapon Banner</div>
+              <div class="text-lg p-1 font-bold rounded-xl hover:bg-blue-600" @click="banner_type = 'Standard Banner'">Standard Banner</div>
+              <div class="text-lg p-1 font-bold rounded-xl hover:bg-blue-600" @click="banner_type = 'Novice Banner'">Novice Banner</div>
+            </div>
+          </div>
+
+          <div class="relative" x-data="{open:false, toggle(){this.open = !this.open}}">
+            <input type="text" class="bg-stone-900 border-2 border-stone-600 rounded-lg p-2 w-full text-center" aria-expanded="true" aria-controls="type_in" placeholder="Select Type" readonly :value="pull_type" @click="toggle" @click.outside="open=false">
+            <div class="w-full mt-2 p-2 rounded-xl bg-stone-700 absolute text-center z-30" id="type_in" x-show="open" x-transition.origin.top>
+              <div class="text-lg p-1 font-bold rounded-xl hover:bg-blue-600" @click="pull_type = 'Character'">Characters</div>
+              <div class="text-lg p-1 font-bold rounded-xl hover:bg-blue-600" @click="pull_type = 'Weapon'">Weapons</div>
+            </div>
+          </div>
+
+          <div class="relative" x-data="{open:false, toggle(){this.open = !this.open}}">
+            <input type="text" class="bg-stone-900 border-2 border-stone-600 rounded-lg p-2 w-full text-center" aria-expanded="true" aria-controls="pull_in" placeholder="Enter Item" readonly :value="item_name" @click="toggle" @click.outside="open=false">
+            <div class="w-full mt-2 p-2 rounded-xl bg-stone-700 absolute text-center z-30 overflow-auto h-40" id="pull_in" x-show="open" x-transition.origin.top>
+              <template x-for="item in data">
+                <div class="p-1 font-bold rounded-xl hover:bg-blue-600" x-text="item.name" @click="item_name = item.name; item_rarity = item.rarity; item_id = item.id"></div>
+              </template>
+            </div>
+          </div>
+
+          <div class="flex flex-row gap-5">
+            <input type="text" class="bg-stone-900 border-2 border-stone-600 rounded-lg w-full p-2 text-center" placeholder="Enter Date" x-model="pull_date" x-mask="9999-99-99">
+            <input type="text" class="bg-stone-900 border-2 border-stone-600 rounded-lg w-full p-2 text-center" placeholder="Enter Time" x-model="pull_time" x-mask="99:99">
+          </div>
+
+          <div class="w-full flex justify-around text-red-500 font-black" x-show="warning">--- FILL ALL FIELDS ---</div>
+
+          <div class="w-full flex justify-around">
+            <button class="group w-fit flex bg-red-300 hover:bg-red-600 rounded-lg px-4 py-2" @click="banner_type=''; pull_type=''; item_name=''; item_rarity=0; pull_date=''; pull_time=''">
+              <p class="font-black text-stone-900 group-hover:text-stone-100">CLEAR</p>
+            </button>
+
+            <button class="group w-fit flex bg-green-300 hover:bg-green-600 rounded-lg px-4 py-2">
+              <p class="font-black text-stone-900 group-hover:text-stone-100" @click="add_data()">UPDATE</p>
+            </button>
+          </div>
 
 
+
+
+        </div>
+      </div>
+
+
+    </div>
 
 
   </main>
 
 
 
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('add_new', () => ({
+        open_add_new: false,
+        toggle() {
+          this.open_add_new = !this.open_add_new;
+        },
 
+        banner_type: '',
+        pull_type: '',
+        item_name: '',
+        item_rarity: 0,
+        item_id: '',
+        pull_date: '',
+        pull_time: '',
+
+        data: function() {
+          if (this.pull_type === 'Character') {
+            return this.$store.char_wish_list.list;
+          } else if (this.pull_type === 'Weapon') {
+            return this.$store.wp_wish_list.list;
+          } else {
+            return [{
+              name: 'Select a Type',
+              rarity: 0,
+              id: ''
+            }];
+          }
+        },
+
+        stored_data: Alpine.$persist([]),
+
+        warning: false,
+        add_data() {
+          if (this.banner_type == '' || this.pull_type == '' || this.item_name == '' || this.item_rarity == '' || this.pull_date == '' || this.pull_time == '') {
+            this.warning = true;
+          } else {
+            this.warning = false;
+            this.stored_data.push({
+              banner_type: this.banner_type,
+              pull_type: this.pull_type,
+              item_name: this.item_name,
+              item_rarity: this.item_rarity,
+              item_id: this.item_id,
+              pull_date: this.pull_date,
+              pull_time: this.pull_time
+            });
+            this.item_name = '';
+            this.item_rarity = 0;
+            this.pull_date = '';
+            this.pull_time = '';
+          }
+        },
+
+
+        default: {
+          name: 'NONE',
+          id: '/assets/common/misc/wish.png',
+          pity: 0
+        },
+
+        list_4: [],
+        list_5: [],
+
+        char_ban: {
+          total: 0,
+          pity_5: 0,
+          pity_4: 0,
+          item_5_name: 'NONE',
+          item_5_id: '/assets/common/misc/wish.png',
+          item_4_name: 'NONE',
+          item_4_id: '/assets/common/misc/wish.png'
+        },
+
+        wp_ban: {
+          total: 0,
+          pity_5: 0,
+          pity_4: 0,
+          item_5_name: 'NONE',
+          item_5_id: '/assets/common/misc/wish.png',
+          item_4_name: 'NONE',
+          item_4_id: '/assets/common/misc/wish.png'
+        },
+
+        perma_ban: {
+          total: 0,
+          pity_5: 0,
+          pity_4: 0,
+          item_5_name: 'NONE',
+          item_5_id: '/assets/common/misc/wish.png',
+          item_4_name: 'NONE',
+          item_4_id: '/assets/common/misc/wish.png'
+        },
+
+        nov_ban: {
+          total: 0,
+          pity_5: 0,
+          pity_4: 0,
+          item_5_name: 'NONE',
+          item_5_id: '/assets/common/misc/wish.png',
+          item_4_name: 'NONE',
+          item_4_id: '/assets/common/misc/wish.png'
+        },
+
+        populate() {
+          var pop_5_count = 0;
+          var pop_4_count = 0;
+
+          for (i = 0; i < this.stored_data.length; i++) {
+            if (this.stored_data[i].banner_type === 'Character Banner') {
+              this.char_ban.total++;
+              if (this.stored_data[i].item_rarity === 5) {
+                this.list_5.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.char_ban.pity_5 + 1
+                });
+                pop_5_count++;
+                this.char_ban.item_5_name = this.stored_data[i].item_name;
+                this.char_ban.item_5_id = this.stored_data[i].item_id;
+                this.char_ban.pity_5 = 0;
+                this.char_ban.pity_4++;
+              } else if (this.stored_data[i].item_rarity === 4) {
+                this.list_4.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.char_ban.pity_4 + 1
+                });
+                pop_4_count++;
+                this.char_ban.item_4_name = this.stored_data[i].item_name;
+                this.char_ban.item_4_id = this.stored_data[i].item_id;
+                this.char_ban.pity_4 = 0;
+                this.char_ban.pity_5++;
+              } else {
+                this.char_ban.pity_5++;
+                this.char_ban.pity_4++;
+              }
+            } else if (this.stored_data[i].banner_type === 'Weapon Banner') {
+              this.wp_ban.total++;
+              if (this.stored_data[i].item_rarity === 5) {
+                this.list_5.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.wp_ban.pity_5 + 1
+                });
+                pop_5_count++;
+                this.wp_ban.item_5_name = this.stored_data[i].item_name;
+                this.wp_ban.item_5_id = this.stored_data[i].item_id;
+                this.wp_ban.pity_5 = 0;
+                this.wp_ban.pity_4++;
+              } else if (this.stored_data[i].item_rarity === 4) {
+                this.list_4.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.wp_ban.pity_4 + 1
+                });
+                pop_4_count++;
+                this.wp_ban.item_4_name = this.stored_data[i].item_name;
+                this.wp_ban.item_4_id = this.stored_data[i].item_id;
+                this.wp_ban.pity_4 = 0;
+                this.wp_ban.pity_5++;
+              } else {
+                this.wp_ban.pity_5++;
+                this.wp_ban.pity_4++;
+              }
+            } else if (this.stored_data[i].banner_type === 'Standard Banner') {
+              this.perma_ban.total++;
+              if (this.stored_data[i].item_rarity === 5) {
+                this.list_5.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.perma_ban.pity_5 + 1
+                });
+                pop_5_count++;
+                this.perma_ban.item_5_name = this.stored_data[i].item_name;
+                this.perma_ban.item_5_id = this.stored_data[i].item_id;
+                this.perma_ban.pity_5 = 0;
+                this.perma_ban.pity_4++;
+              } else if (this.stored_data[i].item_rarity === 4) {
+                this.list_4.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.perma_ban.pity_4 + 1
+                });
+                pop_4_count++;
+                this.perma_ban.item_4_name = this.stored_data[i].item_name;
+                this.perma_ban.item_4_id = this.stored_data[i].item_id;
+                this.perma_ban.pity_4 = 0;
+                this.perma_ban.pity_5++;
+              } else {
+                this.perma_ban.pity_5++;
+                this.perma_ban.pity_4++;
+              }
+            } else if (this.stored_data[i].banner_type === 'Novice Banner') {
+              this.nov_ban.total++;
+              if (this.stored_data[i].item_rarity === 5) {
+                this.list_5.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.this.nov_ban.pity_5 + 1
+                });
+                pop_5_count++;
+                this.nov_ban.item_5_name = this.stored_data[i].item_name;
+                this.nov_ban.item_5_id = this.stored_data[i].item_id;
+                this.nov_ban.pity_5 = 0;
+                this.nov_ban.pity_4++;
+              } else if (this.stored_data[i].item_rarity === 4) {
+                this.list_4.unshift({
+                  name: this.stored_data[i].item_name,
+                  id: this.stored_data[i].item_id,
+                  pity: this.nov_ban.pity_4 + 1
+                });
+                pop_4_count++;
+                this.nov_ban.item_4_name = this.stored_data[i].item_name;
+                this.nov_ban.item_4_id = this.stored_data[i].item_id;
+                this.nov_ban.pity_4 = 0;
+                this.nov_ban.pity_5++;
+              } else {
+                this.nov_ban.pity_5++;
+                this.nov_ban.pity_4++;
+              }
+            }
+          }
+          while (pop_5_count < 5) {
+            this.list_5.push(this.default);
+            pop_5_count++;
+          }
+          while (pop_4_count < 5) {
+            this.list_4.push(this.default);
+            pop_4_count++;
+          }
+        },
+
+
+        backup_data() {
+          let date = new Date();
+          let dd = date.getDate();
+          let mm = date.getMonth();
+          let yy = date.getFullYear();
+          const downloadToFile = (content, filename, contentType) => {
+            const a = document.createElement('a');
+            const file = new Blob([content], {
+              type: contentType
+            });
+            a.href = URL.createObjectURL(file);
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(a.href);
+          };
+          downloadToFile(JSON.stringify(this.stored_data), yy + '_' + (mm + 1) + '_' + dd + '_wish_backup.avr', 'text/plain');
+        },
+
+        restore_data() {
+          var fileContent;
+
+          let file = this.$refs.upload_file.files[0];
+
+          (async () => {
+            fileContent = await file.text();
+            this.stored_data = JSON.parse(fileContent);
+            location.reload()
+          })();
+
+        },
+
+        test_chart() {
+          var options = {
+            chart: {
+              type: 'line'
+            },
+            series: [{
+              name: 'sales',
+              data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+            }],
+            xaxis: {
+              categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+            }
+          }
+
+          var chart = new ApexCharts(this.$refs.test, options);
+
+          chart.render();
+        }
+
+
+
+
+
+
+
+
+
+      }))
+    })
+  </script>
 
 
 
