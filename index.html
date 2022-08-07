@@ -36,11 +36,6 @@
 
   <main class="w-full h-screen bg-black overflow-auto relative select-none font-mono" x-init="populate()">
 
-
-
-
-
-
     <!-- NAV BAR -->
     <nav class="px-5 py-3 w-full bg-stone-800/80 grid grid-cols-3 content-center sticky top-0 z-10">
 
@@ -65,12 +60,6 @@
       </div>
 
     </nav>
-
-
-
-
-
-
 
 
     <!-- BANNER DETAILS -->
@@ -183,25 +172,6 @@
     </section>
 
 
-
-
-    <!-- PULL HISTORY -->
-    <section class="p-5 text-stone-100 font-black">
-
-      <div class="bg-stone-800 rounded-xl ">
-        <h3 class="text-3xl text-center">Wish History</h3>
-        <div class="h-fit" x-ref="test" x-init="test_chart()"></div>
-
-
-
-      </div>
-
-    </section>
-
-
-
-
-
     <!-- LAST PULLS DETAILS -->
     <section class="p-5 grid grid-cols-1 xl:grid-cols-2 gap-5 text-stone-100 font-black">
 
@@ -209,45 +179,16 @@
         <h1 class="text-3xl text-amber-500 text-center">Recent 5★ List</h1>
         <div class="flex flex-col gap-2">
 
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[0].id">
-            <p class="sm:text-xl" x-text="list_5[0].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[0].pity + ' Wishes'"></div>
+          <template x-for="i in 5">
+            <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
+              <img class="h-14 w-14 mr-2 object-contain" :src="list_5[i-1].id">
+              <p class="sm:text-xl" x-text="list_5[i-1].name"></p>
+              <div class="flex grow justify-end">
+                <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[i-1].pity + ' Wishes'"></div>
+              </div>
             </div>
-          </div>
+          </template>
 
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[1].id">
-            <p class="sm:text-xl" x-text="list_5[1].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[1].pity + ' Wishes'"></div>
-            </div>
-          </div>
-
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[2].id">
-            <p class="sm:text-xl" x-text="list_5[2].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[2].pity + ' Wishes'"></div>
-            </div>
-          </div>
-
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[3].id">
-            <p class="sm:text-xl" x-text="list_5[3].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[3].pity + ' Wishes'"></div>
-            </div>
-          </div>
-
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-amber-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_5[4].id">
-            <p class="sm:text-xl" x-text="list_5[4].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-amber-500 text-center text-xs sm:text-base" x-text="list_5[4].pity + ' Wishes'"></div>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -256,45 +197,17 @@
         <h1 class="text-3xl text-violet-500 text-center">Recent 4★ List</h1>
         <div class="flex flex-col gap-2">
 
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[0].id">
-            <p class="sm:text-xl" x-text="list_4[0].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[0].pity + ' Wishes'"></div>
+          <template x-for="i in 5">
+            <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
+              <img class="h-14 w-14 mr-2 object-contain" :src="list_4[i-1].id">
+              <p class="sm:text-xl" x-text="list_4[i-1].name"></p>
+              <div class="flex grow justify-end">
+                <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[i-1].pity + ' Wishes'"></div>
+              </div>
             </div>
-          </div>
+          </template>
 
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[1].id">
-            <p class="sm:text-xl" x-text="list_4[1].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[1].pity + ' Wishes'"></div>
-            </div>
-          </div>
 
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[2].id">
-            <p class="sm:text-xl" x-text="list_4[2].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[2].pity + ' Wishes'"></div>
-            </div>
-          </div>
-
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[3].id">
-            <p class="sm:text-xl" x-text="list_4[3].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[3].pity + ' Wishes'"></div>
-            </div>
-          </div>
-
-          <div class="w-full flex flex-row items-center p-1 rounded-xl bg-gradient-to-r from-violet-500">
-            <img class="h-14 w-14 mr-2 object-contain" :src="list_4[4].id">
-            <p class="sm:text-xl" x-text="list_4[4].name"></p>
-            <div class="flex grow justify-end">
-              <div class="bg-stone-900/50 border-2 px-2 py-1 rounded-full border-violet-500 text-center text-xs sm:text-base" x-text="list_4[4].pity + ' Wishes'"></div>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -597,6 +510,7 @@
                 this.nov_ban.pity_4++;
               }
             }
+
           }
           while (pop_5_count < 5) {
             this.list_5.push(this.default);
@@ -606,8 +520,10 @@
             this.list_4.push(this.default);
             pop_4_count++;
           }
+
         },
 
+        pull_count_timeline: [],
 
         backup_data() {
           let date = new Date();
@@ -639,25 +555,6 @@
           })();
 
         },
-
-        test_chart() {
-          var options = {
-            chart: {
-              type: 'line'
-            },
-            series: [{
-              name: 'sales',
-              data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-            }],
-            xaxis: {
-              categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-            }
-          }
-
-          var chart = new ApexCharts(this.$refs.test, options);
-
-          chart.render();
-        }
 
 
 
